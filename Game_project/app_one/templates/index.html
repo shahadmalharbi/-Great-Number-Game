@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Great Number Game</title>
+    <style>
+      body {
+        margin: auto;
+        padding: auto;
+      }
+      .container {
+    margin: auto;
+    width: 50%;
+    height: 500px;
+    border: 1px black solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+      }
+      /* #green {
+        height: 150px;
+        width: 150px;
+        background-color: green;
+        border: 1px black solid;
+      }
+      #red {
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+        background-color: red;
+        border: 1px black solid;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to the Great Number Game</h1>
+      <p>I am thinking of a number between 1 and 100</p>
+      <p>Take a guess!</p>
+      {% if success %}
+      <div id="green">
+        <p>{{ secret_number }} was the number!</p>
+        <p>{{ count }} attempts to guess the correct number</p>
+        <p></p>
+        <form action="/" method="post">
+          <input type="submit" value="Play again!" />
+          {% csrf_token %}
+        </form>
+      </div>
+        {% elif not success %}
+          <div id="red">
+        <p>{{ Message }}</p></div>
+      <form action="/" method="post">
+        <input
+          id="guessNumber"
+          type="number"
+          name="guessNumber"
+          value=""
+          required
+        />
+        {% csrf_token %}
+        <input type="submit" value="OK" />
+      </form>
+    </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
